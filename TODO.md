@@ -1,6 +1,9 @@
 # TODO
 ## Pages
 ### HOME
+- [ ] Create navbar probably with *flexbox* layout? #UI
+    - [ ] Logo?
+- [ ] 
 ### FAQ
 ### About
 ### Contact
@@ -15,11 +18,12 @@
 - No Anggota 
 - Nama
 - No KTP 
-	
-
 - Tanggal Lahir
 - Alamat
 - Pekerjaan
 - Jenis Kelamin
 - No Telepon
 - Status
+
+# Research
+
