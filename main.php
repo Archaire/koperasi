@@ -9,6 +9,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="index.css">
 	</head>
+  
 	<body>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
@@ -21,19 +22,11 @@
             </div>
             <div class="collapse navbar-collapse" id="resNav" style="margin-right: 50px; margin-top: 5px;">
               <ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD:main.php
-                <li class=""><a href="#" style="margin-top: 6px;">Tentang Kami</a></li>
+              <li class=""><a href="aboutus.php" style="margin-top: 6px;">Tentang Kami</a></li>
 				<li><a href="#" style="margin-top: 6px;">Produk</a></li>
 				<li><a href="#" style="margin-top: 6px;">FAQ</a></li>
 				<li><a href="#" style="margin-top: 6px;">Hubungi Kami</a></li>
         <li><a href="login.php" style="margin-top: -10px;"><button class="btn btn-warning navbar-btn">Log In</button></li>
-=======
-                <li class=""><a href="#">Tentang Kami</a></li>
-				<li><a href="#">Produk</a></li>
-				<li><a href="#">FAQ</a></li>
-				<li><a href="#">Hubungi Kami</a></li>
-				<li><a href="login.php"><button class="btn btn-warning navbar-btn">Log iIn</button></li>
->>>>>>> c451da21e2193d2c79e7e1fca2e8ba57ddc668c4:main.html
               </ul>
             </div>
           </nav>  <!-- End of Navigation Bar -->
