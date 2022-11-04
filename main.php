@@ -25,7 +25,7 @@
 				<li><a href="#">Produk</a></li>
 				<li><a href="#">FAQ</a></li>
 				<li><a href="#">Hubungi Kami</a></li>
-				<li><button class="btn btn-warning navbar-btn">Log In</button></li>
+				<li><a href="login.php"><button class="btn btn-warning navbar-btn">Log iIn</button></li>
               </ul>
             </div>
           </nav>  <!-- End of Navigation Bar -->
