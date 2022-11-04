@@ -17,15 +17,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-             <a class="navbar-brand js-scroll-trigger" href="main.html" style="color: black; margin-top: 12px; "><img src="img/logo.png" width="150" style="margin-top: -13px; margin-left: 50px;" ></a>
+             <a class="navbar-brand js-scroll-trigger" href="main.html" style="color: black; margin-top: 16px; "><img src="img/logo.png" width="170" style="margin-top: -13px; margin-left: 50px;" ></a>
             </div>
             <div class="collapse navbar-collapse" id="resNav" style="margin-right: 50px; margin-top: 5px;">
               <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="#">Tentang Kami</a></li>
-				<li><a href="#">Produk</a></li>
-				<li><a href="#">FAQ</a></li>
-				<li><a href="#">Hubungi Kami</a></li>
-				<li><button class="btn btn-warning navbar-btn">Log In</button></li>
+                <li class=""><a href="#" style="margin-top: 6px;">Tentang Kami</a></li>
+				<li><a href="#" style="margin-top: 6px;">Produk</a></li>
+				<li><a href="#" style="margin-top: 6px;">FAQ</a></li>
+				<li><a href="#" style="margin-top: 6px;">Hubungi Kami</a></li>
+        <li><a href="login.php" style="margin-top: -10px;"><button class="btn btn-warning navbar-btn">Log In</button></li>
               </ul>
             </div>
           </nav>  <!-- End of Navigation Bar -->
