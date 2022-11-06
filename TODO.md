@@ -15,7 +15,9 @@
 
 ### Contact
 
+
 ### Registration/Login Form
+- [ ] Auth
 
 ### Loan Form
 
@@ -46,7 +48,7 @@ CREATE TABLE user(
     name          VARCHAR(?) NOT NULL,
     occupation    VARCHAR(?) NOT NULL,
     gender        ??,
-    user_num      INT NOT NULL UNIQU`E,
+    user_num      INT NOT NULL UNIQUE,
     ktp_num       INT NOT NULL UNIQUE,
     birthdate     DATETIME NOT NULL,
     address       TEXT,
@@ -56,4 +58,5 @@ CREATE TABLE user(
 )
 ```
 # Research
+- Find a better way than ejs.  Need simple not bloated and no/litte framework as possible.
 # Login form
