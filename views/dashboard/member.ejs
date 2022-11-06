@@ -1,0 +1,32 @@
+<h1>Data Test</h1>
+<table>
+	<tr>
+		<th>Tanggal Registrasi</th>
+		<th>No Anggota</th>
+		<th>Name</th>
+		<th>No NIK</th>
+		<th>Tanggal Lahir</th>
+		<th>Alamat</th>
+		<th>Pekerjaan</th>
+		<th>Jenis Kelamin</th>
+		<th>No Telepon</th>
+		<th>Status</th>
+	</tr>
+	<% data.forEach(entry => { %>
+	<tr>
+		<td>Register Date</td>
+		<!-- <td><%= entry.registered_at %></td> -->
+		<td><%= entry.member_id %></td>
+		<td><%= entry.name %></td>
+		<td><%= entry.ktp_num %></td>
+		<td>birthdate</td>
+		<!-- <td><%= entry.birthdate %></td> -->
+	</tr>
+	<% }) %>
+</table>
+<% if (page > 1) { %>
+<a href="/member?page=<%=page-1%>">Prev</a>
+<% } %>
+<% if (page < maxPage) { %>
+<a href="/member?page=<%=page+1%>">Next</a>
+<% } %>
