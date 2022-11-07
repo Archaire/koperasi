@@ -3,6 +3,15 @@ const router = express()
 // const db = require("./connection-db")
 // TODO: Contoller
 
+// TODO: Recursively auth when apply on parent EP
+//  ex: `dashboard/*` (without mapping manually)
+const isAuth = (req, res, next) => {
+	if (req.session.userid) {
+		next()
+	} else {
+		res.redirect("/login")
+	}
+}
 
 // Chainable like this much better i guess.
 router.route("/")
@@ -16,14 +25,15 @@ router.get("/about", (req,res) =>{
 	res.render("aboutus")
 })
 
-router.post("/add", (req,res) => {
+
+router.get("/register", isAuth, (req,res) => {
+	res.render("dashboard/register")
+})
+
+router.post("/register", isAuth, (req,res) => {
 	console.log(req.body);
 	console.log("Take me home");
 	res.redirect("/");
-})
-
-router.get("/register", (req,res) => {
-	res.render("dashboard/register")
 })
 
 router.get("/test", (req,res) => {
@@ -31,24 +41,35 @@ router.get("/test", (req,res) => {
 		if (err) throw err;
 		res.send(result);
 	});
-	// res.render("test")
-	// console.log('This is test')
 })
 
 router.get("/login", (req,res) => {
 	res.render('login')
-	// Validate ???
-	// res.redirect("/dasboard")
 })
 
-//  Only if valid account, included dashboard/* (need to be authenticated)
-router.get("/dashboard", (req,res) => {
+router.get("/logout", (req,res) => {
+    req.session.destroy();
+	res.redirect("/")
+})
+
+router.post("/login", (req,res) => {
+	const { username, pass } = req.body
+	if (username == "admin" && pass == "admin") {
+		req.session.userid=req.body.username;
+		res.redirect("/dashboard")
+	} else {
+		// Show alert! express-flash?
+		res.send("Account inccorect");
+	}
+})
+
+router.get("/dashboard", isAuth, (req,res) => {
 	res.render("dashboard/index")
 })
 
 const limitpage = 10;
 // Test
-router.get("/member", (req, res) => {
+router.get("/member", isAuth, (req, res) => {
 	let sql = `SELECT * FROM user`;
 	db.query(sql, (err, result) => {
 		if (err) throw err;

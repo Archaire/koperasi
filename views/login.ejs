@@ -47,14 +47,13 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form method="POST" action="/login" class="login100-form validate-form">
 					<span class="login100-form-title p-b-43">
 						Login to continue
 					</span>
 					
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email">
+					<div class="wrap-input100" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="username">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Username</span>
 					</div>
@@ -95,7 +94,6 @@
 							or sign up here
 						</span>
 					</div>
-
 					<div class="login100-form-social flex-c-m">
 						<!-- <a href="/register" class="login100-form-social-item flex-c-m bg1 m-r-5"> -->
 						<!-- 	<i class="fa fa-user-plus" aria-hidden="true"></i> -->
