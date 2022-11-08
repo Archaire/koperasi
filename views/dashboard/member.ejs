@@ -11,22 +11,36 @@
 		<th>Jenis Kelamin</th>
 		<th>No Telepon</th>
 		<th>Status</th>
+		<th></th>
 	</tr>
 	<% data.forEach(entry => { %>
 	<tr>
 		<td>Register Date</td>
 		<!-- <td><%= entry.registered_at %></td> -->
-		<td><%= entry.member_id %></td>
+		<!-- <td><%= entry.member_id %></td> -->
+		<td>id member</td>
 		<td><%= entry.name %></td>
 		<td><%= entry.ktp_num %></td>
 		<td>birthdate</td>
 		<!-- <td><%= entry.birthdate %></td> -->
+		<td>address</td>
+		<td>occ</td>
+		<td>gender</td>
+		<td>telp</td>
+		<td>status</td>
+		<td>
+			<!-- TODO: Create popup like page? -->
+			<a href="/edit"><button>Edit</button></a>
+		</td>
 	</tr>
 	<% }) %>
 </table>
 <% if (page > 1) { %>
-<a href="/member?page=<%=page-1%>">Prev</a>
+<a href="/member?page=<%=page-1%>"><button>Prev</button></a>
 <% } %>
 <% if (page < maxPage) { %>
-<a href="/member?page=<%=page+1%>">Next</a>
+<a href="/member?page=<%=page+1%>"><button>Next</button></a>
 <% } %>
+<a href="/register"><button>Add new member</button></a>
+<a href="/dashboard"><button>Back to dashboard</button></a>
+<h2> Style me please </h2>

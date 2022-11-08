@@ -16,13 +16,15 @@ const isAuth = (req, res, next) => {
 // Chainable like this much better i guess.
 router.route("/")
 	.get((req,res) => {
-		res.render('main')
+		const session = req.session.userid
+		res.render('main', {logged: session})
 	})
 	// .post()
 
 // than this 
 router.get("/about", (req,res) =>{
-	res.render("aboutus")
+	const session = req.session.userid
+	res.render("aboutus", {logged: session})
 })
 
 
@@ -44,7 +46,10 @@ router.get("/test", (req,res) => {
 })
 
 router.get("/login", (req,res) => {
-	res.render('login')
+	if (!req.session.userid)
+		res.render('login')
+	else
+		res.redirect("/dashboard");
 })
 
 router.get("/logout", (req,res) => {

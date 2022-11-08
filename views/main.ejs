@@ -26,7 +26,11 @@
 				<li><a href="#" style="margin-top: 6px;">Produk</a></li>
 				<li><a href="#" style="margin-top: 6px;">FAQ</a></li>
 				<li><a href="#" style="margin-top: 6px;">Hubungi Kami</a></li>
-        <li><a href="/login" style="margin-top: -10px;"><button class="btn btn-warning navbar-btn">Log In</button></li>
+				<% if (!logged) {%>
+					<li><a href="/login" style="margin-top: -10px;"><button class="btn btn-warning navbar-btn">Log In</button></li>
+				<% } else { %>
+					<li><a href="/logout" style="margin-top: -10px;"><button class="btn btn-warning navbar-btn">Logout</button></li>
+				<% } %>
               </ul>
             </div>
           </nav>  <!-- End of Navigation Bar -->

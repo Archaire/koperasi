@@ -20,12 +20,16 @@
     <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
     <div id="navbarSupportedContent" class="collapse navbar-collapse" >
     <ul class="nav navbar-nav navbar-right">
-              <li class=""><a href="/about" style="margin-top: 6px; margin-left: 500px; color: black; font-size: 14px;">Tentang Kami</a></li>
-				<li><a href="#" style="margin-top: 6px; color: black; font-size: 14px;">Produk</a></li>
-				<li><a href="#" style="margin-top: 6px; color: black; font-size: 14px;">FAQ</a></li>
-				<li><a href="#" style="margin-top: 6px; color: black; font-size: 14px;">Hubungi Kami</a></li>
-        <li><a href="/login" style="margin-top: -5px;"><button class="btn btn-warning navbar-btn">Log In</button></li>
-              </ul>
+	  <li class=""><a href="/about" style="margin-top: 6px; margin-left: 500px; color: black; font-size: 14px;">Tentang Kami</a></li>
+	  <li><a href="#" style="margin-top: 6px; color: black; font-size: 14px;">Produk</a></li>
+	  <li><a href="#" style="margin-top: 6px; color: black; font-size: 14px;">FAQ</a></li>
+	  <li><a href="#" style="margin-top: 6px; color: black; font-size: 14px;">Hubungi Kami</a></li>
+  	<% if (!logged) {%>
+	  <li><a href="/login" style="margin-top: -5px;"><button class="btn btn-warning navbar-btn">Log In</button></li>
+	<% } else { %>
+	  <li><a href="/logout" style="margin-top: -5px;"><button class="btn btn-warning navbar-btn">Logout</button></li>
+	<% } %>
+	 </ul>
     </div>
   </div>
 </nav>
