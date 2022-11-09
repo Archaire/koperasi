@@ -1,5 +1,5 @@
 // TODO: Disable this for now. need to setup programatically.
-// const db = require("./connection-db")
+const db = require("./connection-db")
 const router = require("./routes")
 const express = require("express")
 const session = require("express-session")

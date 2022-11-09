@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express()
-// const db = require("./connection-db")
+const db = require("./connection-db")
 // TODO: Contoller
 
 // TODO: Recursively auth when apply on parent EP
