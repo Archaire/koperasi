@@ -1,5 +1,28 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- <a class="navbar-brand" href="/" style="color: black; margin-top: 16px; "><img src="images/logo.png" width="170" style="margin-top: -13px; margin-left: 50px;" ></a> -->
+        <a class="navbar-brand" href="/"><img src="images/logo.png" width="170"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color: black;">
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+                <!-- <ul class="navbar-nav float-right mb-2 mb-lg-0"> -->
+                <li class="nav-item pt-2"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                <li class="nav-item pt-2"><a class="nav-link" href="#">Link</a></li>
+                <li class="nav-item pt-2"><a class="nav-link" href="#">Produk</a></li>
+                <li class="nav-item pt-2"><a class="nav-link" href="#">FAQ</a></li>
+                <li class="nav-item pt-2"><a class="nav-link" href="#">Hubungi Kami</a></li>
+
+                <% if (!logged) {%>
+                    <li class="nav-item"><a class="nav-link" href="/login"><button
+                                class="btn btn-warning navbar-btn">Log In</button></a></li>
+                    <% } else { %>
+                        <li class="nav-item"><a class="nav-link" href="/logout"><button
+                                    class="btn btn-warning navbar-btn">Logout</button></a></li>
+                        <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>
