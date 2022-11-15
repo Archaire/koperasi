@@ -78,7 +78,7 @@ router.get("/member", isAuth, (req, res) => {
 	let sql = `SELECT * FROM user`;
 	db.query(sql, (err, result) => {
 		if (err) throw err;
-		const resultLen = result.length;
+		console.log(result)
 		const maxPage = Math.ceil(resultLen / limitpage);
 		let page = req.query.page ? Number(req.query.page) : 1;
 		console.log(`Page: ${page}, pagesnum: ${maxPage}, len ${resultLen}`);
@@ -89,7 +89,7 @@ router.get("/member", isAuth, (req, res) => {
 
 		// LIMIT FOR SQL
 		const idxlim = (page - 1) * limitpage;
-		sqlimit = `SELECT * FROM user LIMIT ${idxlim},${limitpage}`;
+		sqlimit = `SELECT name, id FROM user LIMIT ${idxlim},${limitpage}`;
 		console.log(`idxlimit: ${idxlim}, ${limitpage}`)
 		db.query(sqlimit, (err, result) => {
 			if (err) throw err;
@@ -98,12 +98,38 @@ router.get("/member", isAuth, (req, res) => {
 			if (endlink < page + 1) {
 				iterator -= (page + 1) - maxPage
 			}
-			res.render('dashboard/member', { data: result, page, iterator, maxPage, endlink });
-			result.forEach(element => {
-				console.log(element.name);
-			});
+			const session = req.session.userid
+			res.render('dashboard/member', { logged: session, data: result, page, iterator, maxPage, endlink });
 		})
 	})
+})
+
+router.get("/member/edit/:id", isAuth, (req,res) => {
+	// TODO: Normalize Input user
+	const id = req.params.id
+	const {name, occupation} = req.body
+	  
+	const query = `UPDATE user SET name = "${name.trim()}" WHERE id = ${id}`;
+
+	db.query(query, (err, data) => {
+		if (err) {
+			throw err;
+		} else {
+			res.redirect('/member');
+		}
+	});
+})
+
+router.get("/member/del/:id", isAuth, (req,res) => {
+	const id = req.params.id
+	const query = `DELETE FROM user WHERE id = "${id}"`;
+	db.query(query, (err, data) => {
+		if (err) {
+			throw err;
+		} else {
+			res.redirect('/member');
+		}
+	});
 })
 
 module.exports = router
