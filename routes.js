@@ -33,9 +33,13 @@ router.get("/register", isAuth, (req,res) => {
 })
 
 router.post("/register", isAuth, (req,res) => {
-	console.log(req.body);
-	console.log("Take me home");
-	res.redirect("/");
+	// TODO: Normalize Input user
+	let { name, ktp } = req.body
+	const ccmd = `INSERT INTO user (name , ktp_num) VALUES ("${name}", ${ktp})`
+	db.query(ccmd, (err, result) => {
+		if (err) throw err;
+		res.redirect("/member")
+	})
 })
 
 router.get("/test", (req,res) => {
