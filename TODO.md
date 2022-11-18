@@ -60,3 +60,7 @@ CREATE TABLE user(
 # Research
 - Find a better way than ejs.  Need simple not bloated and no/litte framework as possible.
 # Login form
+
+
+BUG:
+- Member name got trim automatically ? possiblly ejs thing?

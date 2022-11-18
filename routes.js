@@ -79,13 +79,16 @@ router.get("/dashboard", isAuth, (req,res) => {
 const limitpage = 10;
 // Test
 router.get("/member", isAuth, (req, res) => {
-	let sql = `SELECT * FROM user`;
+	let sql = `SELECT name, id, ktp_num FROM user`;
 	db.query(sql, (err, result) => {
+		// TODO: CHECK IF DB IS EMPTY
 		if (err) throw err;
+		const resultLen = result.length
+		// console.log(` LELELLEEN: ${resultLen}`);
 		console.log(result)
 		const maxPage = Math.ceil(resultLen / limitpage);
 		let page = req.query.page ? Number(req.query.page) : 1;
-		console.log(`Page: ${page}, pagesnum: ${maxPage}, len ${resultLen}`);
+		// console.log(`Page: ${page}, pagesnum: ${maxPage} len ${resultLen}`);
 		if (page > maxPage) {
 			res.redirect('/member?page='+encodeURIComponent(maxPage));
 		} else if (page < 1 )
@@ -93,8 +96,8 @@ router.get("/member", isAuth, (req, res) => {
 
 		// LIMIT FOR SQL
 		const idxlim = (page - 1) * limitpage;
-		sqlimit = `SELECT name, id FROM user LIMIT ${idxlim},${limitpage}`;
-		console.log(`idxlimit: ${idxlim}, ${limitpage}`)
+		sqlimit = `SELECT name, id, ktp_num FROM user LIMIT ${idxlim},${limitpage}`;
+		// console.log(`idxlimit: ${idxlim}, ${limitpage}`)
 		db.query(sqlimit, (err, result) => {
 			if (err) throw err;
 			let iterator = (page - 1) < 1 ? 1 : page - 1;
@@ -111,9 +114,9 @@ router.get("/member", isAuth, (req, res) => {
 router.get("/member/edit/:id", isAuth, (req,res) => {
 	// TODO: Normalize Input user
 	const id = req.params.id
-	const {name, occupation} = req.body
+	const {name} = req.body
 	  
-	const query = `UPDATE user SET name = "${name.trim()}" WHERE id = ${id}`;
+	const query = `UPDATE user SET name = "${name}" WHERE id = ${id}`;
 
 	db.query(query, (err, data) => {
 		if (err) {
