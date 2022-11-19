@@ -39,6 +39,7 @@ router.post("/register", isAuth, (req,res) => {
 	db.query(ccmd, (err, result) => {
 		if (err) throw err;
 		res.redirect("/member")
+		console.log(result)
 	})
 })
 
@@ -73,7 +74,8 @@ router.post("/login", (req,res) => {
 })
 
 router.get("/dashboard", isAuth, (req,res) => {
-	res.render("dashboard/index")
+	const session = req.session.userid
+	res.render("dashboard/index", {logged: session})
 })
 
 const limitpage = 10;
