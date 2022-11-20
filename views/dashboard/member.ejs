@@ -1,17 +1,27 @@
 <!DOCTYPE html>
+<html>
 <head>
 <%- include('../partials/head.ejs') %>
+<style>
+	td span:last-child {
+		float: right;
+	}
+	.tblrow .btn-open {
+		visibility: hidden;
+	}
+	.tblrow:hover .btn-open {
+		visibility: visible;
+	}
+</style>
 </head>
 <body>
 <%- include('../partials/header.ejs') %>
-<h1>Data Test</h1>
-
-<table class="table table-striped">
+<table class="table table-striped table-hover table-sm">
 	<thead>
 		<tr>
+			<th>Name</th>
 			<th>Tanggal Registrasi</th>
 			<th>No Anggota</th>
-			<th>Name</th>
 			<th>No NIK</th>
 			<th>Tanggal Lahir</th>
 			<th>Alamat</th>
@@ -21,16 +31,19 @@
 			<th>Status</th>
 			<th></th>
 		</tr>	
-	<thead>
-
+	</thead>
 	<tbody>
 	<% data.forEach(entry => { %>
-		<tr>
-			<td>Register Date</td>
+		<tr class="tblrow">
+			<td><%= entry.name %>
+				<span class="btn-open">
+					<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal-<%= entry.id %>">Open</button>
+				</span>
+			</td>
+			<td>Date</td>
 		<!-- <td><%= entry.registered_at %></td> -->
 		<!-- <td><%= entry.member_id %></td> -->
 			<td>id member</td>
-			<td><%= entry.name %></td>
 			<td><%= entry.ktp_num %></td>
 			<td>birthdate</td>
 			<!-- <td><%= entry.birthdate %></td> -->
@@ -39,18 +52,17 @@
 			<td>gender</td>
 			<td>telp</td>
 			<td>status</td>
-			<td>
-				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal-<%= entry.id %>">Edit</button>
-				<button type="" class="btn btn-danger"><a href="/member/del/<%= entry.id %>">Delete</a></button>
-			</td>
+			<!-- <td> -->
+			<!-- 	<button type="" class="btn btn-danger"><a href="/member/del/<%= entry.id %>">Delete</a></button> -->
+			<!-- </td> -->
 		</tr>
 		<form method="POST" action="/member/edit/<%= entry.id %>">
 			<div class="modal fade" id="editModal-<%= entry.id %>" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							<h1 class="modal-title fs-5" id="modalLabel"></h1>
+							<button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
 							<div class="wrap-input100" data-validate = "Valid email is required: ex@abc.xyz">
@@ -63,6 +75,7 @@
 							</div> -->
 						</div>
 						<div class="modal-footer">
+							<a href="/member/del/<%= entry.id %>" class="me-auto btn btn-danger" role="button">Delete</a>
 							<button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 							<button type="submit" class="btn btn-primary">Save changes</button>
 						</div>
@@ -72,19 +85,20 @@
 		</form>
 	</tbody>
 	<% }) %>
-	</thead>
 </table>
+
 <nav aria-label="Page navigation example">
-	<ul class="pagination">
+	<ul class="pagination pagination justify-content-center">
 		<% if (page > 1) { %>
-	  <li class="page-item"><a href="/member?page=<%=page-1%>">Prev</a></li>
+	  <li class="page-item"><a class="page-link" href="/member?page=<%=page-1%>">Prev</a></li>
 		<% } %>
 		<% if (page < maxPage) { %>
-	  <li class="page-item"><a href="/member?page=<%=page+1%>">Next</a></li>
+	  <li class="page-item"><a class="page-link" href="/member?page=<%=page+1%>">Next</a></li>
 		<% } %>
+	  <div class="ms-auto">
+			<a href="/dashboard"><button type="submit" class="btn btn btn-primary">Back to Dashboard</button></a>
+	  </div>
 	</ul>
-  </nav>
-<a href="/register"><button>Add new member</button></a>
-<a href="/dashboard"><button>Back to dashboard</button></a>
+</nav>
 </body>
 </html>
