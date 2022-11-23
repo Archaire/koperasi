@@ -52,7 +52,7 @@ router.get("/test", (req,res) => {
 
 router.get("/login", (req,res) => {
 	if (!req.session.userid)
-		res.render('login')
+		res.render('login', {logged: false})
 	else
 		res.redirect("/dashboard");
 })
@@ -78,7 +78,7 @@ router.get("/dashboard", isAuth, (req,res) => {
 	res.render("dashboard/index", {logged: session})
 })
 
-const limitpage = 10;
+const limitpage = 2;
 // Test
 router.get("/member", isAuth, (req, res) => {
 	let sql = `SELECT name, id, ktp_num FROM user`;
