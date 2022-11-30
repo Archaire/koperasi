@@ -27,6 +27,11 @@ router.get("/about", (req,res) =>{
 	res.render("aboutus", {logged: session})
 })
 
+router.get("/faq", (req,res) =>{
+	const session = req.session.userid
+	res.render("faq", {logged: session})
+})
+
 
 router.get("/register", isAuth, (req,res) => {
 	res.render("dashboard/register")
