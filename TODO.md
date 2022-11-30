@@ -64,3 +64,8 @@ CREATE TABLE user(
 
 BUG:
 - Member name got trim automatically ? possiblly ejs thing?
+
+
+
+- LOAN
+- DB
