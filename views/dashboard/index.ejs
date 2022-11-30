@@ -3,7 +3,15 @@
   <head>
     <title>Koperasi Padasuka</title>
     <%- include('../partials/head.ejs') %>
-    <link rel="stylesheet" href="index.css" />
+    <style>
+      .vertical-center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+      </style>
   </head>
 
   <body> 
@@ -20,7 +28,9 @@
 
 <h2> Style me please :) </h2> -->
 
-<div class="container text-center mb-3" style="margin-top: 150px">
+
+<div class="vertical-center">
+<div class="container-fluid text-center mb-3">
     
     <div class="row justify-content-center">
       <div class="col">
@@ -38,7 +48,7 @@
     </div>
 </div>
 
-<div class="container text-center pt-5"> 
+<div class="container-fluid text-center pt-5"> 
   <div class="row">
     <div class="col ">
       <a href="/register"><img src="images/neraca.png" width="50%"></a>
@@ -54,16 +64,13 @@
     </div>
   </div>
 </div> 
+</div>
 
-<!-- <%- include('../partials/footer.ejs') %> -->
-<!-- Hacky way to fix footer-->
-<div class="container pt-4 fixed-bottom" style="height: 80px;">
-    <footer class="pt-3 border-top">
-        <p class="text-center" style="font-family: Times New Roman; font-weight: thin; color: #607782;">
-            Copyright &copy;
-            <script>document.write(new Date().getFullYear())</script> Koperasi Padasuka
-        </p>
-    </footer>
+
+
+<!-- Brilliant way to fix footer-->
+<%- include('../partials/footer.ejs') %>
+
 </div>
 </body>
 </html>

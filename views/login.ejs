@@ -3,21 +3,26 @@
 	<head>
     <title>Login Form</title>
 	<%- include('partials/head.ejs') %>
+	<style>
+		.vertical-center {
+		  margin: 0;
+		  position: absolute;
+		  top: 50%;
+		  -webkit-transform: translateY(-50%);
+		  transform: translateY(-50%);
+		}
+		</style>
 </head>
 	<%- include('partials/header.ejs') %>
 
 <!-- Total hour wasted here : 3
 dammit -->
 <body style="background-color: #e6e6e6;">
-	<form action="/login" method="POST">
-	<div class="container pt-5 mt-5">
-		<div class="row justify-content-center align-items-center">
+	<form action="/login" method="POST">	
+	<div class="container-fluid w-100 vertical-center">
+		<div class="row justify-content-center">
 			<div class="col-md-6">
 				<div class="card px-5 py-5" id="form1">
-					<!-- <div class="mb-3">
-						<label for="exampleInputEmail1" class="form-label">Username</label>
-						<input type="text" class="input100" type="text" name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
-					  </div> -->
 					  <div class="mb-3">
 						<label for="password" class="form-label">Username</label>
 						<input type="text" name="username" class="form-control" id="username">
@@ -33,5 +38,9 @@ dammit -->
 		</div>
 	</div>
 </form>
+
+<!-- footer  -->
+<%- include('partials/footer.ejs') %>
+
 </body>
 </html>
