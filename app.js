@@ -1,29 +1,41 @@
 // TODO: Disable this for now. need to setup programatically.
-const db = require("./connection-db")
-const router = require("./routes")
+const router = require("./config/routes")
 const express = require("express")
-const session = require("express-session")
 const app = express()
+const passport = require("passport")
+
+const session = require("express-session")
+require("dotenv").config()
 
 // TODO: save to config, dotenv ?
-const hostname = "localhost"
-const port = 3000
+const hostname = process.env.APP_HOST
+const port = process.env.APP_PORT
 
 // this make sure to set with html with ejs templating. 
 app.set('view engine', 'ejs');
 
 app.use(express.static("public"))
 
-// Bodyparser
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 
 app.use(session({
-	secret: "SUPERSECRETKEYS",
+	secret: process.env.SESSION_KEY,
 	resave: false,
 	saveUninitialized: true,
 }));
 
+// Auth (passportJS)
+require("./config/auth")
+app.use(passport.initialize())
+app.use(passport.session())
+
+if (process.env.TESTING) {
+	const testroute = require("./config/test_routes")
+	app.use(testroute)
+}
 app.use(router)
+
 app.listen(port, () => {
 	console.log(`Running server on http://${hostname}:${port}`)
 })

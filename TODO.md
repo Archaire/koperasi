@@ -64,3 +64,6 @@ CREATE TABLE user(
 
 BUG:
 - Member name got trim automatically ? possiblly ejs thing?
+
+FIX:
+- some image file too big. should compress to something like webp?
