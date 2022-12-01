@@ -1,4 +1,4 @@
-const db = require("../connection-db")
+const db = require("../config/db")
 
 function memberShow (req,res) {
   const limitpage = 2;
@@ -37,6 +37,7 @@ function memberShow (req,res) {
         iterator,
         maxPage,
         endlink,
+		logged: req.isAuthenticated()
       });
     });
   });

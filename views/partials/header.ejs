@@ -15,12 +15,17 @@
                 <li class="nav-item pt-2"><a class="nav-link" href="#">Hubungi Kami</a></li>
                 <li class="nav-item pt-2"><a class="nav-link" href="/faq">FAQ</a></li>
 
+					
                 <% if (!logged) {%>
-                    <li class="nav-item"><a class="nav-link" href="/login"><button
-                                class="btn btn-warning navbar-btn">Log In</button></a></li>
+				<form method="POST" action="/login">
+                    <li class="nav-item"><a class="nav-link" href="">
+						<button class="btn btn-warning navbar-btn">Log In</button></a></li>
+				</form>
                     <% } else { %>
-                        <li class="nav-item"><a class="nav-link" href="/logout"><button
+				<form method="POST" action="/logout">
+                        <li class="nav-item"><a class="nav-link" href=""><button
                                     class="btn btn-warning navbar-btn">Logout</button></a></li>
+				</form>
                         <% } %>
             </ul>
         </div>

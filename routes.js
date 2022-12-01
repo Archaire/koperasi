@@ -1,54 +1,53 @@
-const express = require("express")
-const router = express()
-const db = require("./connection-db")
+const router = require("express")()
+
+// Controller
 const memberCtrl = require("./controller/user")
 const passport = require("passport")
-
-const {} = require("./config/auth")
-
-// TODO: Contoller
+const { protected } = require("./config/auth")
 
 // root
 router.route("/")
 	.get((req,res) => {
-		const session = req.session.userid
-		res.render('main', {logged: session})
+		res.render('main', { logged: req.isAuthenticated()})
 	})
 	// .post()
 
 router.route("/about")
 	.get((req, res) => {
 		const session = req.session.userid
-		res.render("aboutus", { logged: session })
+		res.render("aboutus", { logged: req.isAuthenticated()})
 	})
 
 router.route("/faq")
 	.get((req, res) => {
 		const session = req.session.userid
-		res.render("faq", { logged: session })
+		res.render("faq", { logged: req.isAuthenticated() })
 	})
 
 router.route("/contact")
 	.get((req, res) => {
-		res.render("contact", {logged: true})
+		res.render("contact", {logged: req.isAuthenticated()})
 	})
 
 router.get("/test", (req,res) => {})
 
+function hello(req,res,next) {
+	console.log("HEHE")
+	next()
+}
+
 router.route("/login")
 	.get((req, res) => {
-		if (!req.session.userid) {
-			res.render('login', { logged: false })
-		} else {
+		if (req.isAuthenticated()) {
 			res.redirect("/dashboard")
+		} else {
+			res.render("login", {logged: req.isAuthenticated()})
 		}
 	})
 	.post(passport.authenticate("local", {
-		successRedirect: "/dashboard",
-		failureRedirect: "/login"
-	}), (req,res) => {
-		console.log("POST LOGIN <PASSPORT>")
-	})
+		failureRedirect: "/login",
+		successRedirect: "/dashboard"
+	}), hello)
 	// .post((req, res) => {
 	// 	const { username, pass } = req.body
 	// 	if (username == "admin" && pass == "admin") {
@@ -61,32 +60,33 @@ router.route("/login")
 	// })
 
 router.route("/logout")
-	.get((req, res) => {
-		req.session.destroy();
+	.post((req, res, next) => {
+		req.logout()
+		// req.session.destroy();
 		res.redirect("/")
 	})
 
 router.route("/dashboard")
-	.get((req, res) => {
-		res.render("dashboard/index", { logged: true })
+	.get(protected, (req, res) => {
+		res.render("dashboard/index", { logged: req.isAuthenticated() })
 	})
 
 
 // Member
 router.route("/member")
-	.get(memberCtrl.show)
+	.get(protected, memberCtrl.show)
 
 router.route("/member/edit/:id")
-	.post(memberCtrl.edit)
+	.post(protected, memberCtrl.edit)
 
 router.route("/member/del/:id")
-	.get(memberCtrl.delete)
+	.get(protected, memberCtrl.delete)
 
 router.route("/register")
-	.get((req,res) => {
-		res.render("dashboard/register")
+	.get(protected, (req,res) => {
+		res.render("dashboard/register", {logged: req.isAuthenticated()})
 	})
-	.post(memberCtrl.create)
+	.post(protected, memberCtrl.create)
 
 // BLACK HOLE
 router.route("*")
