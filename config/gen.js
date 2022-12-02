@@ -1,6 +1,6 @@
 const { faker } = require("@faker-js/faker")
 const prisma = require("./db")
-
+const lengthGen = 50
 function genRandomMember() {
 	return {
 		// id: faker.datatype.number({max: 100}),
@@ -28,7 +28,7 @@ function genRandomMember() {
 async function main() {
 	const member = await prisma.member.findMany()
 	if (!member.length) {
-		Array.from({ length: 10}).forEach(async () => {
+		Array.from({ length: lengthGen}).forEach(async () => {
 			await prisma.member.create({
 				data: genRandomMember(),
 			})
