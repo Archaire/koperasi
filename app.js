@@ -34,6 +34,7 @@ if (process.env.TESTING) {
 	const testroute = require("./config/test_routes")
 	app.use(testroute)
 }
+require("./config/gen")
 app.use(router)
 
 app.listen(port, () => {
