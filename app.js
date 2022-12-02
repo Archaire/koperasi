@@ -9,7 +9,7 @@ require("./config/env")
 
 // TODO: save to config, dotenv ?
 const hostname = process.env.APP_HOST
-const port = process.env.APP_PORT
+const port = process.env.PORT || 3000
 
 // this make sure to set with html with ejs templating. 
 app.set('view engine', 'ejs');
