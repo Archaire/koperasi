@@ -29,7 +29,6 @@
 			<th>Jenis Kelamin</th>
 			<th>No Telepon</th>
 			<th>Status</th>
-			<th></th>
 		</tr>	
 	</thead>
 	<tbody>
@@ -40,39 +39,74 @@
 					<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal-<%= entry.id %>">Open</button>
 				</span>
 			</td>
-			<td>Date</td>
-		<!-- <td><%= entry.registered_at %></td> -->
-		<!-- <td><%= entry.member_id %></td> -->
-			<td>id member</td>
-			<td><%= entry.ktp_num %></td>
-			<td>birthdate</td>
-			<!-- <td><%= entry.birthdate %></td> -->
-			<td>address</td>
-			<td>occ</td>
-			<td>gender</td>
-			<td>telp</td>
-			<td>status</td>
-			<!-- <td> -->
-			<!-- 	<button type="" class="btn btn-danger"><a href="/member/del/<%= entry.id %>">Delete</a></button> -->
-			<!-- </td> -->
+			<td><%= entry.createdAt_fmt %></td>
+			<td><%= entry.memberId %></td>
+			<td><%= entry.nik %></td>
+			<td><%= entry.birthdate_fmt %></td>
+			<td><%= entry.address_fmt %></td>
+			<td><%= entry.occupation %></td>
+			<td><%= entry.gender %></td>
+			<td><%= entry.telephone %></td>
+			<td><%= entry.status %></td>
 		</tr>
 		<form method="POST" action="/member/edit/<%= entry.id %>">
 			<div class="modal fade" id="editModal-<%= entry.id %>" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h1 class="modal-title fs-5" id="modalLabel"></h1>
 							<button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
-							<div class="wrap-input100" data-validate = "Valid email is required: ex@abc.xyz">
-								<label data-error="wrong" data-success="right" for="orangeForm-name">Name</label>
-								<input autocomplete="off" type="text" name="name" id="orangeForm-name" class="form-control validate" value="<%= entry.name %>">
+						 <div class="row">
+							<div class="col wrap-input100" data-validate = "Valid email is required: ex@abc.xyz">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">First Name</label>
+								<input autocomplete="off" type="text" name="firstName" id="orangeForm-name" class="form-control validate" value="<%= entry.firstName %>">
 							</div>
-							<!-- <div class="wrap-input100">
-								<label data-error="wrong" data-success="right" for="orangeForm-name">Occupation</label>
-								<input type="text" name="occupation" id="orangeForm-name" class="form-control validate" value="<%= entry.occupation %>">
-							</div> -->
+							<div class="col wrap-input100" data-validate = "Valid email is required: ex@abc.xyz">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">Last Name</label>
+								<input autocomplete="off" type="text" name="lastName" id="orangeForm-name" class="form-control validate" value="<%= entry.lastName %>">
+							</div>
+						 </div>
+							<div class="col wrap-input100" data-validate = "Valid email is required: ex@abc.xyz">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">Tanggal Lahir</label>
+								<input autocomplete="off" type="date" name="firstName" id="orangeForm-name" class="form-control validate" value="<%= entry.birthdate_fmt_strip %>">
+							</div>
+							<div class="col wrap-input100" data-validate = "Valid email is required: ex@abc.xyz">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">Tanggal Registrasi</label>
+								<input autocomplete="off" type="text" name="firstName" id="orangeForm-name" class="form-control validate" value="<%= entry.createdAt_fmt %>" readonly>
+							</div>
+
+						 <div class="row">
+
+							<div class="col wrap-input100">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">Jalan</label>
+								<input autocomplete="off" type="text" name="firstName" id="orangeForm-name" class="form-control validate" value="<%= entry.street %>">
+							</div>
+							<div class="col wrap-input100">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">Desa</label>
+								<input autocomplete="off" type="text" name="firstName" id="orangeForm-name" class="form-control validate" value="<%= entry.village %>">
+							</div>
+						 </div>
+						 <div class="row">
+							<div class="col wrap-input100">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">Kecamatan</label>
+								<input autocomplete="off" type="text" name="firstName" id="orangeForm-name" class="form-control validate" value="<%= entry.kecamatan %>">
+							</div>
+							<div class="col wrap-input100">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">Kabupaten/Kota</label>
+								<input autocomplete="off" type="text" name="firstName" id="orangeForm-name" class="form-control validate" value="<%= entry.kecamatan %>">
+							</div>
+						</div>
+						 <div class="row">
+							<div class="col wrap-input100">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">Pekerjaaan</label>
+								<input autocomplete="off" type="text" name="firstName" id="orangeForm-name" class="form-control validate" value="<%= entry.kecamatan %>">
+							</div>
+							<div class="col wrap-input100">
+								<label data-error="wrong" data-success="right" for="orangeForm-name">No Telepon</label>
+								<input autocomplete="off" type="text" name="firstName" id="orangeForm-name" class="form-control validate" value="<%= entry.kecamatan %>">
+							</div>
 						</div>
 						<div class="modal-footer">
 							<a href="/member/del/<%= entry.id %>" class="me-auto btn btn-danger" role="button">Delete</a>

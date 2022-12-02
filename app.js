@@ -5,7 +5,7 @@ const app = express()
 const passport = require("passport")
 
 const session = require("express-session")
-require("dotenv").config()
+require("./config/env")
 
 // TODO: save to config, dotenv ?
 const hostname = process.env.APP_HOST

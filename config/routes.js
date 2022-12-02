@@ -1,5 +1,4 @@
 const router = require("express")()
-const db = require("./db")
 const { protected } = require("./auth")
 const passport = require("passport")
 

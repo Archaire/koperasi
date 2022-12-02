@@ -1,0 +1,35 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DB_URL")
+}
+
+model Member {
+    id         Int       @id @default(autoincrement())
+    firstName  String    @db.VarChar(50)
+    lastName   String?   @db.VarChar(50)
+    createdAt  DateTime  @default(now())
+    updatedAt  DateTime  @updatedAt
+    memberId   String    @unique @db.VarChar(100)
+    telephone  String    @db.VarChar(50)
+    nik        String    @unique @db.VarChar(30)
+    birthdate  DateTime  @db.Date
+    occupation String    @db.VarChar(100)
+    address    Address[]
+}
+
+model Address {
+    id        Int    @id @default(autoincrement())
+    user      Member @relation(fields: [userId], references: [id])
+    userId    Int
+    street    String @db.VarChar(200)
+    city      String @db.VarChar(200)
+    desa      String @db.VarChar(100)
+    kecamatan String @db.VarChar(100)
+    district  String @db.VarChar(50)
+    country   String @default("Indonesia") @db.VarChar(50)
+    zipcode   String @db.VarChar(20)
+}
