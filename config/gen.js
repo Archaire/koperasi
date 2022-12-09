@@ -1,12 +1,14 @@
 const { faker } = require("@faker-js/faker")
-const prisma = require("./db")
+const { prisma } = require("./db")
+
 const lengthGen = 50
+
 function genRandomMember() {
 	return {
 		// id: faker.datatype.number({max: 100}),
 		firstName: faker.name.firstName(),
 		lastName: faker.name.lastName(),
-		memberId: `A${faker.random.numeric(4)}`,
+		memberId: faker.phone.number('A#######'),
 		nik: faker.random.numeric(20),
 		occupation: faker.name.jobType(),
 		telephone: faker.phone.number('+628########'),

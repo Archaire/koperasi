@@ -5,13 +5,12 @@ const app = express()
 const passport = require("passport")
 
 const session = require("express-session")
+const { sessionStore } = require("./config/db")
 require("./config/env")
 
-// TODO: save to config, dotenv ?
 const hostname = process.env.APP_HOST
 const port = process.env.PORT || 3000
 
-// this make sure to set with html with ejs templating. 
 app.set('view engine', 'ejs');
 
 app.use(express.static("public"))
@@ -22,7 +21,11 @@ app.use(express.json())
 app.use(session({
 	secret: process.env.SESSION_KEY,
 	resave: false,
+	store: sessionStore,
 	saveUninitialized: true,
+	cookie: {
+		maxAge: 1000 * 60 * 60 * 24 // 1 day
+	},
 }));
 
 // Auth (passportJS)
@@ -33,8 +36,10 @@ app.use(passport.session())
 if (process.env.TESTING) {
 	const testroute = require("./config/test_routes")
 	app.use(testroute)
+	// Generate Member
+	require("./config/gen")
 }
-require("./config/gen")
+
 app.use(router)
 
 app.listen(port, () => {

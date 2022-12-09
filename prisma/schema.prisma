@@ -21,6 +21,13 @@ model Member {
     address    Address[]
 }
 
+model Session {
+    id        String   @id
+    sid       String   @unique
+    data      String
+    expiresAt DateTime
+}
+
 model Address {
     id        Int    @id @default(autoincrement())
     user      Member @relation(fields: [userId], references: [id])

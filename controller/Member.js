@@ -1,6 +1,6 @@
 const { Country, City, State } = require("country-state-city")
 
-const prisma = require("../config/db")
+const { prisma } = require("../config/db")
 
 const memberNew = (req, res) => {
 	res.render("dashboard/register", { message: 0 })

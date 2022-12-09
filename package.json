@@ -7,7 +7,8 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "prisma": "npx prisma",
-	"prisma:reset": "npx prisma migrate reset && npx prisma migrate dev",
+    "prisma:reset": "npx prisma migrate reset && npx prisma migrate dev",
+    "prisma:gen": "npx prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,14 +22,15 @@
   },
   "homepage": "https://github.com/helloitslala/koperasi#readme",
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "ejs": "^3.1.8",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.20",
     "prisma": "^4.7.0"
   },
   "dependencies": {
-    "@faker-js/faker": "^7.6.0",
     "@prisma/client": "^4.7.0",
+    "@quixo3/prisma-session-store": "^3.1.10",
     "country-state-city": "^3.1.2",
     "dotenv": "^16.0.3",
     "dotenv-expand": "^9.0.0",
