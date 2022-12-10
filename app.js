@@ -3,6 +3,7 @@ const router = require("./config/routes")
 const express = require("express")
 const app = express()
 const passport = require("passport")
+const flash = require("express-flash")
 
 const session = require("express-session")
 const { sessionStore } = require("./config/db")
@@ -28,10 +29,13 @@ app.use(session({
 	},
 }));
 
+
 // Auth (passportJS)
 require("./config/auth")
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use(flash())
 
 if (process.env.TESTING) {
 	const testroute = require("./config/test_routes")

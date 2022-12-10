@@ -31,7 +31,9 @@ router.route("/login")
 	})
 	.post(passport.authenticate("local", {
 		failureRedirect: "/login",
-		successRedirect: "/dashboard"
+		successRedirect: "/dashboard",
+		// FIX: builtin expess-passport doesnt work!
+		// successFlash: true,
 	}))
 
 router.route("/logout")
